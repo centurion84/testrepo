@@ -1,0 +1,24 @@
+Feature: Teams Actions
+
+  @TeamsURLmappingStability
+  Scenario: Teams User Actions
+    Given delete active asset by Name "O365Proxy"
+    And create office asset named "O365Proxy" with URL mapping prefix "app2"
+    When A user login to Teams via url mapping
+    And TeamsUI - create file named "1teams" under "root" type word
+    And TeamsUI - create folder named "firstfolder" under "root"
+    And TeamsUI - create folder named "sharefolder" under "root/firstfolder"
+    And TeamsUI - share folder "root/firstfolder/sharefolder"
+    And TeamsUI - unshare folder "root/firstfolder/sharefolder"
+    And TeamsUI - rename folder "root/firstfolder/sharefolder" to "notshare"
+    And TeamsUI - copy file "root/1teams.docx" To folder path "root/firstfolder/notshare"
+    And TeamsUI - rename file "root/firstfolder/notshare/1teams.docx" to new file name "deleteme"
+    And TeamsUI - view file "root/firstfolder/notshare/deleteme.docx"
+    And TeamsUI - modify file "root/firstfolder/notshare/deleteme.docx" add text "newfilecontent"
+    And TeamsUI - move file "root/firstfolder/notshare/deleteme.docx" to "root/firstfolder"
+    And TeamsUI - download file "root/1teams.docx"
+    And TeamsUI - delete folder "root/firstfolder"
+    And TeamsUI - delete file "root/1teams.docx"
+# X   And TeamsUI - upload file to "root"
+#    And TeamsUI - create file under "root/" named "test" type "word"
+# X   And TeamsUI - restore file "root/firstfolder/deleteme.docx"
